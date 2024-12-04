@@ -3,7 +3,12 @@ import streamlit as st
 import pandas as pd
 
 # ตั้งค่า API key ของ OpenAI
-openai.api_key = 'your-api-key'
+# ตั้งค่า API Key
+st.sidebar.title("OpenAI API Key")
+openai_api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
+# ตรวจสอบการเชื่อมต่อ OpenAI API
+if openai_api_key:
+   openai.api_key = 'your-api-key'
 # ฟังก์ชันในการสร้างกลอนคันบุน (漢文) โดยใช้ OpenAI API (ChatCompletion)
 def generate_kanbun(prompt):
     # ส่งคำขอไปยัง ChatGPT เพื่อสร้างกลอน
