@@ -20,8 +20,8 @@ def generate_kanbun(prompt):
         temperature=0.7
     )
     
-       kanbun = response['choices'][0]['message']['content'].strip()
-    return kanbun
+     kanbun = response['choices'][0]['message']['content'].strip()
+     return kanbun
 
 # ฟังก์ชันในการแปล漢文 เป็นภาษาอังกฤษ
 def translate_kanbun_to_english(kanbun):
