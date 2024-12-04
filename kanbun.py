@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 
 # ตั้งค่า API key ของ OpenAI
-
+openai.api_key = api_key
 # ฟังก์ชันในการสร้างกลอนคันบุน (漢文) โดยใช้ OpenAI API (ChatCompletion)
 def generate_kanbun(prompt):
     # ส่งคำขอไปยัง ChatGPT เพื่อสร้างกลอน
