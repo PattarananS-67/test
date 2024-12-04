@@ -12,7 +12,7 @@ if openai_api_key:
 # ฟังก์ชันในการสร้างกลอนคันบุน (漢文) โดยใช้ OpenAI API (ChatCompletion)
 def generate_kanbun(prompt):
     # ส่งคำขอไปยัง ChatGPT เพื่อสร้างกลอน
-    response = openai.ChatCompletion.create(
+     response = openai.ChatCompletion.create(
         model="gpt-4",  # หรือ "gpt-3.5-turbo" ถ้าคุณต้องการใช้ GPT-3.5
         messages=[{"role": "system", "content": "คุณคือผู้แต่งกลอนคันบุน (漢文) ที่มีความเชี่ยวชาญ"},
                   {"role": "user", "content": prompt}],
