@@ -5,10 +5,10 @@ import pandas as pd
 # ตั้งค่า API key ของ OpenAI
 # ตั้งค่า API Key
 st.sidebar.title("OpenAI API Key")
-openai_api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
-# ตรวจสอบการเชื่อมต่อ OpenAI API
-if openai_api_key:
-   openai.api_key = 'your-api-key'
+openai.api_key = st.session_state.api_key # ดึงค่าจากช่องมาเป็น api 
+api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password") #ช่องกรอก api 
+if api_key:
+    st.session_state.api_key = api_key
 
 # ฟังก์ชันในการสร้างกลอนคันบุน (漢文) โดยใช้ OpenAI API (ChatCompletion)
 def generate_kanbun(prompt):
