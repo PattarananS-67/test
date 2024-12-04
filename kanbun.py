@@ -8,12 +8,11 @@ st.sidebar.title("OpenAI API Key")
 openai_api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
 # ตรวจสอบการเชื่อมต่อ OpenAI API
 if openai_api_key:
-   openai.api_key = 'your-api-key'
+   client = openai ('your-api-key')
 
 # ฟังก์ชันในการสร้างกลอนคันบุน (漢文) โดยใช้ OpenAI API (ChatCompletion)
 def generate_kanbun(prompt):
     # ส่งคำขอไปยัง ChatGPT เพื่อสร้างกลอน
-    client = openai(api_key='...')
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",  # หรือ "gpt-4" ถ้าคุณต้องการใช้ GPT-3.5
         messages=[{"role": "system", "content": "คุณคือผู้แต่งกลอนคันบุน (漢文) ที่มีความเชี่ยวชาญ"},
@@ -27,7 +26,6 @@ def generate_kanbun(prompt):
 
 # ฟังก์ชันในการแปล漢文 เป็นภาษาอังกฤษ
 def translate_kanbun_to_english(kanbun):
-    client = openai(api_key='...')
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "system", "content": "คุณคือผู้เชี่ยวชาญด้านการแปล漢文เป็นภาษาอังกฤษ"},
@@ -41,7 +39,6 @@ def translate_kanbun_to_english(kanbun):
 
 # ฟังก์ชันเพื่อดึงคำศัพท์ที่น่าสนใจจาก漢文
 def extract_vocabulary(kanbun):
-    client = openai(api_key='...')
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "system", "content": "คุณคือผู้เชี่ยวชาญด้านคำศัพท์จาก漢文"},
@@ -93,3 +90,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
