@@ -4,11 +4,11 @@ import pandas as pd
 
 # ตั้งค่า API key ของ OpenAI
 # ตั้งค่า API Key
-st.sidebar.title("OpenAI API Key")
-openai_api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
 
+openai_api_key = st.sidebar.text_input("Enter your OpenAI API Key", type="password")
+# ตรวจสอบการเชื่อมต่อ OpenAI API
 if openai_api_key:
-    openai.api_key = openai_api_key
+   openai.api_key = 'your-api-key'
 
 # ฟังก์ชันในการสร้างกลอนคันบุน (漢文) โดยใช้ OpenAI API (ChatCompletion)
 def generate_kanbun(prompt):
@@ -83,8 +83,26 @@ def main():
                 "คำศัพท์ที่น่าสนใจ": [vocabulary]
             }
             df = pd.DataFrame(data)
+
+            # แสดง DataFrame
             st.subheader("ข้อมูลในรูปแบบตาราง:")
             st.dataframe(df)
+
+            # ปุ่มดาวน์โหลดข้อมูลเป็น CSV
+            st.download_button(
+                label="ดาวน์โหลดข้อมูลเป็น CSV",
+                data=df.to_csv(index=False),
+                file_name="kanbun_data.csv",
+                mime="text/csv"
+            )
+
+            # ปุ่มดาวน์โหลดข้อมูลเป็น Excel
+            st.download_button(
+                label="ดาวน์โหลดข้อมูลเป็น Excel",
+                data=df.to_excel(index=False, engine='openpyxl'),
+                file_name="kanbun_data.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
         else:
             st.warning("กรุณาระบุธีมของกลอนเพื่อสร้าง")
 
